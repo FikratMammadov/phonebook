@@ -10,5 +10,6 @@
         <module name="tech.abb.phonebook.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>

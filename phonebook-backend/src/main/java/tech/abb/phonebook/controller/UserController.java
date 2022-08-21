@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<UserResponseDto> delete(@RequestParam Integer id){
+    public ResponseEntity<UserResponseDto> delete(@RequestParam(name = "id") Integer id){
         return ResponseEntity.ok(userService.delete(id));
     }
 

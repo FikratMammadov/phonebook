@@ -22,11 +22,6 @@ pipeline {
                 sh 'docker build --file frontend/Dockerfile -t 192.168.15.165:3000/ui:v$BUILD_NUMBER frontend/'
             }
         }
-        stage('Login to DockerHub') {
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
         stage('Push docker image to registry') {
             steps {
                 sh 'docker push 192.168.15.165:3000/ui:v$BUILD_NUMBER'
@@ -46,9 +41,4 @@ pipeline {
         }
     }
 
-    post {
-		always {
-			sh 'docker logout'
-		}
-	}
 }

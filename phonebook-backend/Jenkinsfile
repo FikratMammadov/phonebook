@@ -37,11 +37,6 @@ pipeline {
                 sh 'docker build --file Dockerfile -t 192.168.15.166:8081/be:v$BUILD_NUMBER backend/'
             }
         }
-        stage('Login to DockerHub') {
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
         stage('Push docker image to registry') {
             steps {
                 sh 'docker push 192.168.15.166:8081/be:v$BUILD_NUMBER'
@@ -60,10 +55,4 @@ pipeline {
             }
         }
     }
-
-    post {
-		always {
-			sh 'docker logout'
-		}
-	}
 }
